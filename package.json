@@ -1,0 +1,17 @@
+{
+  "name": "bitcoin-private-key-fixer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js --address=1CjV8fZz6R8LTwFaAsRUwWFEJbtEXQp7iu --privateKey=_3mo_evKjjjcy2mqVbcHs2zWwoujMRpzRyN6mpidwdqmMPmqc6t2"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bitcoinjs-lib": "^4.0.2",
+    "lodash": "^4.17.11",
+    "qrcode-terminal": "^0.12.0",
+    "yargs": "^12.0.5"
+  }
+}
