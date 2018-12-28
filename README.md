@@ -1,9 +1,9 @@
 # Bitcoin Private Key Fixer
 
 
--> This tool can find a random typo. If the `private key` has 1 symbol that is not correct, the tool will find it and change it to its real value and will restore the original `private key`.
+- This tool can find and fix a random typo. If the `private key` has 1 symbol that is not correct, the tool will find it and change it to its real value and will restore the original `private key`.
 
--> It can also find up to 4 missing symbols from the `private key` assuming we know the positions of those missing symbols. It will also work with more than 4 symbols but with each symbol we add we will slow the script ~60 times so it practically becomes useless after the 4th or 5th missing character (depending on your computer).
+- It can also find up to 4 missing symbols from the `private key` assuming we know the positions of those missing symbols. It will also work with more than 4 symbols but with each symbol we add we will slow the script ~60 times so it practically becomes useless after the 4th or 5th missing character (depending on your computer).
 
 ## Requirements
 
@@ -14,16 +14,58 @@ The script will only work if
 
 The basic functionality in the popular https://www.bitaddress.org website for generating a single wallet generates the `public address` and the `private key` in those exact formats and they are widely used.
 
-## Usage
+They look like these:
 
-If you don't have [Node.js](https://nodejs.org/en/download/) you have to 
+Public address: `1CjV8fZz6R8LTwFaAsRUwWFEJbtEXQp7iu`
+
+Private key: `L3mopevKjjjcy2mqVbcHs2zWwoujMRpzRyN6mpidwdqmMPmqc6t2`
+
+## Getting started
+
+If you don't have Node.js you have to [download](https://nodejs.org/en/download/) it and install it first.
+
+Then run the following commands into the `Terminal` (for MacOS) or the `Command Prompt` (for Windows) to download the tool and start playing with it.
+
+```bash
+git clone https://github.com/ishristov/bitcoin-private-key-fixer.git
+cd bitcoin-private-key-fixer
+npm install
+```
 
 ### Restore by fixing a single typo
 
-Just pass the known address and the 
+To fix a typo in the private key, replace the `{PUBLIC_ADDRESS}` and the `{PRIVATE_KEY}` with your known `public address` and your broken `private key` and run the command in the `Terminal`.
+
+```bash
+node app.js --publicAddress={PUBLIC_ADDRESS} --privateKey={PRIVATE_KEY}
+```
+
+For example
+
+
+```bash
+node app.js --publicAddress=1CjV8fZz6R8LTwFaAsRUwWFEJbtEXQp7iu --privateKey=L3mopevKjjjcy2mqVbcHs2zWwoujMRpzRyN6mpidwdqmMPmqc6ts
+```
+
+![privatekeyfound](https://github.com/ishristov/bitcoin-private-key-fixer/blob/master/assets/private-key-found.png)
 
 ### Restore up to 4-5 missing simbols
 
-Put underscore 
+To restore missing characters from the WIF private key, replace the `{PUBLIC_ADDRESS}` and the `{PRIVATE_KEY}` with your known `public address` and your `private key`, put underscore `_` on each position where you are missing a symbol and and run the command in the `Terminal`.
 
+```bash
+node app.js --publicAddress={PUBLIC_ADDRESS} --privateKey={PRIVATE_KEY}
+```
 
+For example
+
+```bash
+node app.js --publicAddress=1CjV8fZz6R8LTwFaAsRUwWFEJbtEXQp7iu --privateKey=L3__pev_jjjcy2mqVbcHs2zWwoujMRpzRyN6mpidwdqmMPmqc6t2
+```
+
+![privatekeyprocessing](https://github.com/ishristov/bitcoin-private-key-fixer/blob/master/assets/private-key-processing.png)
+
+## Contributions
+If a private key is successfully restored any donation would be highly appreciated.
+
+:beers: [3CyTvaE9GVYTDZD2wPsyu8aZwTT5u9vfbC](https://www.blockchain.com/btc/address/3CyTvaE9GVYTDZD2wPsyu8aZwTT5u9vfbC)

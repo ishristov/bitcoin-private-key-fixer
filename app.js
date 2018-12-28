@@ -8,7 +8,7 @@ const chars = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
 
 const argv = yargs
   .options({
-    address: {
+    publicAddress: {
       demand: true,
       describe: 'The public address that corresponds to the private key',
       string: true
@@ -43,7 +43,7 @@ function isRealWIF (WIF) {
   try {
     const keyPair = bitcoin.ECPair.fromWIF(WIF)
     const { address } = bitcoin.payments.p2pkh({ pubkey: keyPair.publicKey })
-    return address === argv.address
+    return address === argv.publicAddress
   } catch (e) {
     return false
   }
@@ -70,7 +70,7 @@ if (~argv.privateKey.indexOf(wildcard)) {
 
   const printProgress = function (progress) {
     clearProgress()
-    process.stdout.write(progress + '%')
+    process.stdout.write('Progress: ' + progress + '%')
   }
 
   // Changes all underscores to all possible symbols and generates a public address
@@ -94,7 +94,7 @@ if (~argv.privateKey.indexOf(wildcard)) {
     })
   }
 
-  console.log('\n\rMissing symbols: ' + badChars + '. Trying ' + possibleVariations + ' possible variations...')
+  console.log('\n\rMissing symbols: ' + badChars + '. Trying ' + possibleVariations + ' possible combinations.')
   loopIndex(test, argv.privateKey.indexOf(wildcard))
 } else {
   if (isRealWIF(test)) {
@@ -127,9 +127,3 @@ if (found) {
 } else {
   console.log('\x1b[31m', '\n\rNo WIF private key found that corresponds to the provided public address.', '\x1b[0m')
 }
-
-// Private Key WIF Compressed -> L3mopevKjjjcy2mqVbcHs2zWwoujMRpzRyN6mpidwdqmMPmqc6t2
-// Bitcoin Address Compressed -> 1CjV8fZz6R8LTwFaAsRUwWFEJbtEXQp7iu
-
-// node app.js --address=1CjV8fZz6R8LTwFaAsRUwWFEJbtEXQp7iu --privateKey=L3mopevKjjjcy2mqVbcHs2zWwoujMRpzRyN6mpidwdqmMPmqc6t2
-// node app.js 1CjV8fZz6R8LTwFaAsRUwWFEJbtEXQp7iu L3mopev___jcy2mqVbcHs2zWwoujMRpzRyN6mpidwdqmMPmqc6t2
