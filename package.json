@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "node app.js --address=1CjV8fZz6R8LTwFaAsRUwWFEJbtEXQp7iu --privateKey=_3mo_evKjjjcy2mqVbcHs2zWwoujMRpzRyN6mpidwdqmMPmqc6t2"
+    "test": "node app.js --publicAddress=1CjV8fZz6R8LTwFaAsRUwWFEJbtEXQp7iu --privateKey=L_mo_evKjjjcy2mqVbcHs2zWwoujMRpzRyN6mpidwdqmMPmqc6t2"
   },
   "author": "",
   "license": "ISC",
