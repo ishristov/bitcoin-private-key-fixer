@@ -1,9 +1,11 @@
 # Bitcoin Private Key Fixer
 
+[![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![Build Status](https://travis-ci.org/ishristov/bitcoin-private-key-fixer.svg?branch=master)](https://travis-ci.org/ishristov/bitcoin-private-key-fixer)
 
-- This tool can find and fix a random typo. If the `private key` has 1 symbol that is not correct, the tool will find it and change it to its real value and will restore the original `private key`.
+1. This tool can find and fix a random typo. If the `private key` has 1 symbol that is not correct, the tool will find it and change it to its real value and will restore the original `private key`.
 
-- It can also find up to 4 missing symbols from the `private key` assuming we know the positions of those missing symbols. It will also work with more than 4 symbols but with each symbol we add we will slow the script ~60 times so it practically becomes useless after the 4th or 5th missing character (depending on your computer).
+2. It can also find up to 4 missing symbols from the `private key` assuming we know the positions of those missing symbols. It will also work with more than 4 symbols but with each symbol we add we will slow the script ~60 times so it practically becomes useless after the 4th or 5th missing character (depending on your computer).
 
 ## Requirements
 
@@ -31,6 +33,10 @@ git clone https://github.com/ishristov/bitcoin-private-key-fixer.git
 cd bitcoin-private-key-fixer
 npm install
 ```
+
+### Going offline
+
+At this point it would be best to turn off your internet connection and continue offline because your computer might be infected with viruses or malware. It is also recommended to have a mobile Bitcoin wallet nearby so if the private key is indeed recovered, the funds can be immediately transfered to it because the key would no longer be considered safe (some malicious program might intercept it and steal it).
 
 ### Restore by fixing a single typo
 
@@ -64,6 +70,10 @@ node app.js --publicAddress=1CjV8fZz6R8LTwFaAsRUwWFEJbtEXQp7iu --privateKey=L3__
 ```
 
 ![privatekeyprocessing](https://github.com/ishristov/bitcoin-private-key-fixer/blob/master/assets/private-key-processing.png)
+
+### Going back online
+
+If a private key was successfully recovered and the BTC funds were transfered out, it would be best to first delete the tool by running the following comamnd into the Terminal `cd ../ && rm -Rf bitcoin-private-key-fixer` then restart your computer and only then it would be relatively safe to connect back to the internet.
 
 ## Contributions
 If a private key is successfully restored any donation would be highly appreciated.
