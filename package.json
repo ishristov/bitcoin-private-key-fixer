@@ -11,12 +11,12 @@
   },
   "author": {
     "name": "Ivaylo Hristov",
-		"url": "https://www.linkedin.com/in/ishristov/"
+    "url": "https://www.linkedin.com/in/ishristov/"
   },
   "repository": {
-		"type": "git",
-		"url": "https://github.com/ishristov/bitcoin-private-key-fixer.git"
-	},
+    "type": "git",
+    "url": "https://github.com/ishristov/bitcoin-private-key-fixer.git"
+  },
   "license": "ISC",
   "dependencies": {
     "bitcoinjs-lib": "^4.0.2",
@@ -30,6 +30,8 @@
     "standard": "^12.0.1"
   },
   "standard": {
-    "env": [ "mocha" ]
+    "env": [
+      "mocha"
+    ]
   }
 }
