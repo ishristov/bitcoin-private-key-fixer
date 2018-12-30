@@ -1,5 +1,18 @@
 const bitcoin = require('bitcoinjs-lib')
-const qrcode = require('qrcode-terminal')
+
+function isCompressedWIF (privateKey) {
+  if (privateKey.length === 52) {
+    return true
+  }
+
+  if (privateKey.length === 51) {
+    return privateKey.charAt(0) !== '5'
+  }
+
+  if (privateKey.length < 51) {
+    return privateKey.charAt(0) !== '5'
+  }
+}
 
 function isRealWIF (publicAddress, WIF) {
   try {
@@ -11,25 +24,19 @@ function isRealWIF (publicAddress, WIF) {
   }
 }
 
-function printPrivateKey (privateKey) {
-  console.log('Bitcoin WIF private key found:', '\x1b[32m', privateKey, '\x1b[0m')
-  console.log('\n\r\x1b[35mATTENTION!\x1b[0m As the original WIF private key was found and shown on this device,\n\rit can no longer be considered safe because your computer might be infected with viruses or malwares.')
-  console.log('\n\rIn order to secure the funds from this private key, it is recommended to transfer them immediately to another wallet.\n\rTo do so you have to sweep the wallet by scanning the QR code below from almost any Bitcoin wallet app (e.g. Coinomi).\n\r', '\x1b[0m')
-  qrcode.generate(privateKey)
+function log (msg) {
+  if (process.env.NODE_ENV !== 'test') {
+    console.log(msg)
+  }
 }
 
 function replaceAt (string, index, replace) {
   return string.substring(0, index) + replace + string.substring(index + 1)
 }
 
-function clearProgress () {
-  process.stdout.clearLine()
-  process.stdout.cursorTo(0)
-}
-
 module.exports = {
-  clearProgress: clearProgress,
+  isCompressedWIF: isCompressedWIF,
   isRealWIF: isRealWIF,
-  printPrivateKey: printPrivateKey,
+  log: log,
   replaceAt: replaceAt
 }
