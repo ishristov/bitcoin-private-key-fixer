@@ -7,6 +7,14 @@
 
 2. It can also find up to 4 missing symbols from the `private key` assuming we know the positions of those missing symbols. It will also work with more than 4 symbols but with each symbol we add we will slow the script ~60 times so it practically becomes useless after the 4th or 5th missing character (depending on your computer).
 
+## Important
+
+**-> This is all said below but since people are very cautions and suspicious (as they SHOULD be with such tools) I want to emphasize on it. The only safe way to use the tool is to follow these exact steps**:
+
+Download the code -> turn off your internet -> run the code and find the key -> sweep the private key with a mobile wallet to transfer the funds -> remove the tool (instructions below) -> restart computer -> turn on computer.
+
+**Even if you haven't found the key for some reason, you still have to remove the tool and restart the computer before going back online.**
+
 ## Requirements
 
 The script will only work if
