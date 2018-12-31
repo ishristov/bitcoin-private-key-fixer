@@ -9,9 +9,9 @@
 
 ## Important
 
-**-> This is all said below but since people are very cautions and suspicious (as they SHOULD be with such tools) I want to emphasize on it. The only safe way to use the tool is to follow these exact steps**:
+**This is all said below but since people are very cautions and suspicious (as they SHOULD be with such tools) I want to emphasize on it. The only safe way to use the tool is to follow these exact steps**:
 
-Download the code -> turn off your internet -> run the code and find the key -> sweep the private key with a mobile wallet to transfer the funds -> remove the tool (instructions below) -> restart computer -> turn on computer.
+Download the code -> turn off your internet -> run the code and find the key -> sweep the private key with a mobile wallet to transfer the funds -> remove the tool (instructions below) -> restart computer -> turn on internet.
 
 **Even if you haven't found the key for some reason, you still have to remove the tool and restart the computer before going back online.**
 
