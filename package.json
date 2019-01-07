@@ -5,9 +5,12 @@
   "main": "app.js",
   "scripts": {
     "standard": "standard **/*.js",
-    "mocha": "mocha **/*.test.js",
+    "mocha": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha **/*.test.js",
     "test": "npm run standard && npm run mocha",
-    "testFixMissing2": "node app.js --publicAddress=1CjV8fZz6R8LTwFaAsRUwWFEJbtEXQp7iu --privateKey=L_mo_evKjjjcy2mqVbcHs2zWwoujMRpzRyN6mpidwdqmMPmqc6t2"
+    "testFixTypo": "node app.js --publicAddress=1CjV8fZz6R8LTwFaAsRUwWFEJbtEXQp7iu --privateKey=x3mopevKjjjcy2mqVbcHs2zWwoujMRpzRyN6mpidwdqmMPmqc6t2",
+    "testFixMissing2": "node app.js --publicAddress=1CjV8fZz6R8LTwFaAsRUwWFEJbtEXQp7iu --privateKey=L_mo_evKjjjcy2mqVbcHs2zWwoujMRpzRyN6mpidwdqmMPmqc6t2",
+    "testFixMissing3": "node app.js --publicAddress=1CjV8fZz6R8LTwFaAsRUwWFEJbtEXQp7iu --privateKey=L3mop__Kjjjcy2mq_bcHs2zWwoujMRpzRyN6mpidwdqmMPmqc6t2",
+    "testFixMissingEnd": "node app.js --publicAddress=1CjV8fZz6R8LTwFaAsRUwWFEJbtEXQp7iu --privateKey=L3mopevKjjjcy2mqVbcHs2zWwoujMRpzRyN6mpidwdqmM"
   },
   "author": {
     "name": "Ivaylo Hristov",
@@ -20,6 +23,7 @@
   "license": "ISC",
   "dependencies": {
     "bitcoinjs-lib": "^4.0.2",
+    "bs58check": "^2.1.2",
     "lodash": "^4.17.11",
     "qrcode-terminal": "^0.12.0",
     "yargs": "^12.0.5"

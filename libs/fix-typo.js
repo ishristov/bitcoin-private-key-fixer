@@ -10,17 +10,17 @@ const { chars } = require('../config')
  *
  * @param {string} publicAddress - the public address associated with
  * the private key in question
- * @param {string} knownPrivateKey - the private key that needs fixing
+ * @param {string} badPrivateKey - the private key that needs fixing
  */
-function fixTypo (publicAddress, knownPrivateKey) {
+function fixTypo (publicAddress, badPrivateKey) {
   let found = false
-  let test = knownPrivateKey
+  let test = badPrivateKey
 
-  _.forEach(knownPrivateKey, (s, index) => {
+  _.forEach(badPrivateKey, (s, index) => {
     if (found) {
       return false
     }
-    test = knownPrivateKey
+    test = badPrivateKey
     _.forEach(chars, (c) => {
       test = utils.replaceAt(test, index, c)
       if (utils.isRealWIF(publicAddress, test)) {

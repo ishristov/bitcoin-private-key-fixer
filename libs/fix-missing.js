@@ -1,42 +1,29 @@
 const _ = require('lodash')
+const bs58check = require('bs58check')
 
+const Progress = require('../Progress')
 const utils = require('../utils')
 const { chars, wildcard } = require('../config')
 
 /**
  * Replaces all missing symbols (marked with _ ) with the base58 allowed
  * symbols and checks whether the new private key can generate the
- * public key that is associated with the original private key
+ * public key that is associated with the original private key.
+ *
+ * Returns the fixed private key or false otherwise.
  *
  * @param {string} publicAddress - the public address associated with
  * the private key in question
- * @param {string} knownPrivateKey - the private key that needs fixing
+ * @param {string} badPrivateKey - the private key that needs fixing
  */
-function fixMissing (publicAddress, knownPrivateKey) {
+
+function fixMissing (publicAddress, badPrivateKey) {
   let found = false
-  let test = knownPrivateKey
+  let test = badPrivateKey
 
-  const badChars = _.countBy(knownPrivateKey)[wildcard] || 0
+  const badChars = _.countBy(badPrivateKey)[wildcard] || 0
   const possibleVariations = Math.pow(58, badChars)
-
-  let tries = 0
-  let percent
-
-  // When new WIF private keys are being generated, this will update the progress
-  // in percents but only when the percent is actially changed.
-  const updateProgress = function () {
-    tries++
-    let currPercent = Math.round(tries / possibleVariations * 100)
-    if (percent !== currPercent) {
-      percent = currPercent
-      printProgress(percent)
-    }
-  }
-
-  const printProgress = function (progress) {
-    utils.clearProgress()
-    process.stdout.write('Progress: ' + progress + '%')
-  }
+  const progress = new Progress(possibleVariations)
 
   // Changes all underscores to all possible symbols and generates a public address
   // to see whether it will match the public address that is provided.
@@ -50,8 +37,8 @@ function fixMissing (publicAddress, knownPrivateKey) {
       if (~test.indexOf(wildcard)) {
         loopIndex(test, test.indexOf(wildcard))
       } else {
-        updateProgress()
-        if (utils.isRealWIF(publicAddress, test)) {
+        progress.update()
+        if (bs58check.decodeUnsafe(test) && utils.isRealWIF(publicAddress, test)) {
           found = test
           return false
         }
@@ -59,8 +46,9 @@ function fixMissing (publicAddress, knownPrivateKey) {
     })
   }
 
-  console.log('\n\rMissing symbols: ' + badChars + '. Trying ' + possibleVariations + ' possible combinations.')
-  loopIndex(test, knownPrivateKey.indexOf(wildcard))
+  utils.log('\n\rMissing symbols: ' + badChars + '. Trying ' + possibleVariations + ' possible combinations.')
+  loopIndex(test, badPrivateKey.indexOf(wildcard))
+  Progress.clear()
 
   return found
 }

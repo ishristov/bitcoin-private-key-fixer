@@ -5,7 +5,9 @@
 
 1. This tool can find and fix a random typo. If the `private key` has 1 symbol that is not correct, the tool will find it and change it to its real value and will restore the original `private key`.
 
-2. It can also find up to 4 missing symbols from the `private key` assuming we know the positions of those missing symbols. It will also work with more than 4 symbols but with each symbol we add we will slow the script ~60 times so it practically becomes useless after the 4th or 5th missing character (depending on your computer).
+2. It can find up to 4-5 missing symbols from the `private key` assuming we know the positions of those missing symbols. It will also work with more missing symbols but with each symbol we add we will slow the script ~60 times so it practically becomes useless after the ~5th missing character (depending on your computer).
+
+3. It can also find up to 8-9 missing symbols if they are at the end of the `private key`.
 
 ## Important
 
@@ -19,8 +21,8 @@ Download the code -> turn off your internet -> run the code and find the key -> 
 
 The script will only work if
 
-1. The `private key` is in a **WIF** compressed format. This is a Wallet Import Format that is 52 characters long (assuming no missing symbols) and should start with `K` or `L`.
-2. The `public address` that is associated with the `private key` in question is known and is also in compressed format.
+1. The `private key` is in a **WIF** compressed or uncompressed format. This is a Wallet Import Format that is 51 or 52 characters long (assuming no missing symbols) and should start with `5` for the 51 chars version and with `K` or `L` for the 52 chars version.
+2. The `public address` that is associated with the `private key` in question is known.
 
 The basic functionality in the popular https://www.bitaddress.org website for generating a single wallet generates the `public address` and the `private key` in those exact formats and they are widely used.
 
@@ -65,19 +67,37 @@ node app.js --publicAddress=1CjV8fZz6R8LTwFaAsRUwWFEJbtEXQp7iu --privateKey=L3mo
 
 ### Restore up to 4-5 missing simbols
 
-To restore missing characters from the WIF private key, replace the `{PUBLIC_ADDRESS}` and the `{PRIVATE_KEY}` with your known `public address` and your `private key`, put underscore `_` on each position where you are missing a symbol and and run the command in the `Terminal`.
+To restore missing characters from the WIF private key, replace the `{PUBLIC_ADDRESS}` and the `{PRIVATE_KEY}` with your known `public address` and your `private key`, put underscore `_` on each position where you are missing a symbol and run the command in the `Terminal`.
 
 ```bash
 node app.js --publicAddress={PUBLIC_ADDRESS} --privateKey={PRIVATE_KEY}
 ```
 
-For example
+For example (3 missing, replaced with `_`)
 
 ```bash
 node app.js --publicAddress=1CjV8fZz6R8LTwFaAsRUwWFEJbtEXQp7iu --privateKey=L3__pev_jjjcy2mqVbcHs2zWwoujMRpzRyN6mpidwdqmMPmqc6t2
 ```
 
+*Recovering 3 missing symbols is almost instant and recovering 4 should take < 5 minutes on a MacBook Pro.*
+
 ![privatekeyprocessing](https://github.com/ishristov/bitcoin-private-key-fixer/blob/master/assets/private-key-processing.png)
+
+### Restore up to 8-9 missing simbols at the end
+
+To restore missing characters **from the end** at the WIF private key, replace the `{PUBLIC_ADDRESS}` and the `{PRIVATE_KEY}` with your known `public address` and your `private key` and run the command in the `Terminal`.
+
+```bash
+node app.js --publicAddress={PUBLIC_ADDRESS} --privateKey={PRIVATE_KEY}
+```
+
+For example (7 missing)
+
+```bash
+node app.js --publicAddress=1CjV8fZz6R8LTwFaAsRUwWFEJbtEXQp7iu --privateKey=L3mopevKjjjcy2mqVbcHs2zWwoujMRpzRyN6mpidwdqmM
+```
+
+*Recovering 7 missing symbols is almost instant and recovering 8 should take < 10 minutes on a MacBook Pro.*
 
 ### Going back online
 
