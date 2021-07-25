@@ -106,6 +106,6 @@ If a private key was successfully recovered and the BTC funds were transfered ou
 ## Contributions
 If a private key is successfully restored any donation would be highly appreciated.
 
-:beers: [3CyTvaE9GVYTDZD2wPsyu8aZwTT5u9vfbC](https://www.blockchain.com/btc/address/3CyTvaE9GVYTDZD2wPsyu8aZwTT5u9vfbC)
+:beers: [bc1q388znz2hafr8rwzjd6rvj70m9ccp3n98sw3y2u](https://www.blockchain.com/btc/address/bc1q388znz2hafr8rwzjd6rvj70m9ccp3n98sw3y2u)
 
-[![Donation link with qr code](https://blockchain.info/qr?data=3CyTvaE9GVYTDZD2wPsyu8aZwTT5u9vfbC&size=200)](https://www.blockchain.com/btc/address/3CyTvaE9GVYTDZD2wPsyu8aZwTT5u9vfbC)
+[![Donation link with qr code](https://blockchain.info/qr?data=bc1q388znz2hafr8rwzjd6rvj70m9ccp3n98sw3y2u&size=200)](https://www.blockchain.com/btc/address/bc1q388znz2hafr8rwzjd6rvj70m9ccp3n98sw3y2u)
